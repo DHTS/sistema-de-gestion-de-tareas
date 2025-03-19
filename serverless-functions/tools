@@ -1,0 +1,4 @@
+cd task_create && zip -r ../task_create.zip . && cd .. &&
+cd task_delete && zip -r ../task_delete.zip . && cd .. &&
+cd task_edit && zip -r ../task_edit.zip . && cd .. &&
+cd task_get && zip -r ../task_get.zip . && cd ..
