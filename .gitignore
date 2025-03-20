@@ -1,0 +1,14 @@
+bin
+bson
+dns
+dnspython-2.7.0.dist-info
+dotenv
+gridfs
+pymongo
+pymongo-4.11.3.dist-info
+python_dotenv-1.0.1.dist-info
+task_create.zip
+task_delete.zip
+task_edit.zip
+task_get.zip
+.git
