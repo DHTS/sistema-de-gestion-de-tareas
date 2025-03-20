@@ -12,3 +12,4 @@ task_delete.zip
 task_edit.zip
 task_get.zip
 .git
+node_modules
