@@ -36,7 +36,9 @@ export const databaseEdit = async (task) => {
 export const databaseGet = async () => {
     try {
         const response = await fetch(url.get, { method: "GET" });
-        return response.json();
+        const json = response.json();
+        console.log(json);
+        return json;
     } catch (error) {
         console.error(error);
     }
