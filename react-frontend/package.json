@@ -22,7 +22,7 @@
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
-        "deploy": "react-scripts build && echo '->building ready' && rm -rf ../docs/* && echo '->cleaning ready' && mv ./build/* ../docs/ && echo '->moving ready' && git add ../docs/* && git commit -m 'redeploy' && git push",
+        "deploy": "react-scripts build && echo '-building ready' && rm -rf ../docs/* && echo '-cleaning ready' && mv ./build/* ../docs/ && echo '-moving ready' && git add ../docs/* && git commit -m 'redeploy' && git push",
         "test": "react-scripts test",
         "eject": "react-scripts eject"
     },
