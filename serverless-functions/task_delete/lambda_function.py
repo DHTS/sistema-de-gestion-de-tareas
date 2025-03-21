@@ -9,7 +9,7 @@ def get_db_connection():
 def lambda_handler(event, context):
 
     try:
-        task_id = event['pathParameters'].get('id')
+        task_id = event['id']
 
         if not task_id:
             return {"statusCode": 422, "body": json.dumps({"message": "ID de tarea requerido"})}

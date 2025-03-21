@@ -29,7 +29,7 @@ const TaskCard = ({
                     <TextField
                         fullWidth
                         defaultValue={task.title}
-                        onBlur={(e) => updateTaskTitle(task, e.target.value)}
+                        onBlur={(e) => updateTaskTitle(task.id, e.target.value)}
                         autoFocus
                     />
                 ) : (
@@ -48,7 +48,7 @@ const TaskCard = ({
                             multiline
                             defaultValue={task.description}
                             onBlur={(e) =>
-                                updateTaskDescription(task, e.target.value)
+                                updateTaskDescription(task.id, e.target.value)
                             }
                             autoFocus
                         />

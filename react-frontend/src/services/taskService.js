@@ -8,38 +8,49 @@ const url = {
 };
 
 export const databaseCreate = async (task) => {
-    const response = await fetch(url.create, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(task),
-    });
-    return response.json();
+    try {
+        const response = await fetch(url.create, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(task),
+        });
+        return response.json();
+    } catch (error) {
+        console.error(error);
+    }
 };
 
 export const databaseDelete = async (taskId) => {
-    const response = await fetch(`${url.delete}/${taskId}`, {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-    });
-    return response.json();
+    try {
+        const response = await fetch(`${url.delete}/${taskId}`, {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" },
+        });
+        return response.json();
+    } catch (error) {
+        console.error(error);
+    }
 };
 
 export const databaseEdit = async (task) => {
-    const response = await fetch(url.edit, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(task),
-    });
-    return response.json();
+    try {
+        const response = await fetch(url.edit, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(task),
+        });
+        return response.json();
+    } catch (error) {
+        console.error(error);
+    }
 };
 
 export const databaseGet = async () => {
     try {
         const response = await fetch(url.get, { method: "GET" });
-        console.log("1");
-        const json = response.json();
-        console.log(json);
-        return json;
+        const json = await response.json();
+        const parsedJson = JSON.parse(json.body);
+        return parsedJson.tasks;
     } catch (error) {
         console.error(error);
     }

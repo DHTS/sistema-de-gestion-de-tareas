@@ -35,35 +35,40 @@ const TaskManager = () => {
         }
     };
 
-    const updateTaskStatus = (id, status) => {
-        setTasks(
-            tasks.map((task) => (task.id === id ? { ...task, status } : task))
-        );
-        databaseEdit({ id, status });
-    };
-
     const deleteTask = (id) => {
         setTasks(tasks.filter((task) => task.id !== id));
         databaseDelete(id);
     };
 
-    const updateTaskTitle = (selectecTask, title) => {
-        setTasks(
-            tasks.map((task) =>
-                task.id === selectecTask.id ? { ...task, title } : task
-            )
+    const updateTaskStatus = (id, status) => {
+        const updatedTasks = tasks.map((task) =>
+            task.id === id ? { ...task, status } : task
         );
-        databaseEdit(selectecTask);
+        setTasks(updatedTasks);
+        const updatedTask = updatedTasks.find((task) => task.id === id);
+        console.log(updatedTask);
+        databaseEdit(updatedTask);
+    };
+
+    const updateTaskTitle = (id, title) => {
+        const updatedTasks = tasks.map((task) =>
+            task.id === id ? { ...task, title } : task
+        );
+        setTasks(updatedTasks);
+        const found = updatedTasks.find((task) => task.id === id);
+        console.log(found);
+        databaseEdit(found);
         setEditingTitle(null);
     };
 
-    const updateTaskDescription = (selectedTask, description) => {
-        setTasks(
-            tasks.map((task) =>
-                task.id === selectedTask.id ? { ...task, description } : task
-            )
+    const updateTaskDescription = (id, description) => {
+        const updatedTasks = tasks.map((task) =>
+            task.id === id ? { ...task, description } : task
         );
-        databaseEdit(selectedTask);
+        setTasks(updatedTasks);
+        const found = updatedTasks.find((task) => task.id === id);
+        console.log(found);
+        databaseEdit(found);
         setEditingDescription(null);
     };
 

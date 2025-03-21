@@ -7,33 +7,12 @@ def get_db_connection():
     return client["taskmanager"]["tasks"]
 
 def lambda_handler(event, context):
-
     try:
-        task_id = event['pathParameters'].get('id')
-
-        if not task_id:
-            return {
-                "statusCode": 422,
-                "body": json.dumps({"message": "ID de tarea requerido"})
-            }
-
-        body = json.loads(event['body'])
-
-        update_data = {}
-        allowed_fields = ["title", "description", "status"]
-        for field in allowed_fields:
-            if field in body:
-                update_data[field] = body[field]
-
-        if not update_data:
-            return {
-                "statusCode": 422,
-                "body": json.dumps({"message": "Ningún campo válido proporcionado"})
-            }
+        if not all(k in event for k in ("id", "title", "description", "status")):
+            return {"statusCode": 422, "body": json.dumps({"message": "Campos incompletos"})}
 
         db = get_db_connection()
-
-        result = db.update_one({"id": task_id}, {"$set": update_data})
+        result = db.update_one({"id": event['id']}, {"$set": event})
 
         if result.matched_count == 0:
             return {
@@ -43,7 +22,7 @@ def lambda_handler(event, context):
 
         return {
             "statusCode": 200,
-            "body": json.dumps({"message": f"Tarea {task_id} actualizada exitosamente", "updated_fields": update_data})
+            "body": json.dumps({"message": f"Tarea {event['id']} actualizada exitosamente"})
         }
 
     except Exception as e:
